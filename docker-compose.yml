@@ -1,0 +1,52 @@
+version: "3.9"
+
+volumes:
+  db_volume:
+  gems_volume:
+
+services:
+  db:
+    container_name: mysql-container
+    image: mysql:5.7.20
+    # command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_volume:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASS}"
+  app:
+    build: .
+    image: app
+    env_file: .env
+    environment:
+      DB_HOST: db
+    command: /myapp/bin/dockerize -wait tcp://db:3306 -timeout 120s bundle exec rails s -b 0.0.0.0 -P /dev/null
+    volumes:
+      - .:/myapp
+      - gems_volume:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  websocket_client:
+    image: app
+    env_file: .env
+    environment:
+      DB_HOST: db
+    command: /myapp/bin/dockerize -wait tcp://db:3306 -timeout 120s bundle exec rake websocket:client
+    depends_on: 
+      - app
+      - db
+  websocket_server:
+    image: ruby
+    entrypoint: ["/bin/bash"]
+    volumes:
+      - ./bin/websocketd:/usr/bin/websocketd
+      - ./inventory.rb:/inventory.rb
+    command: -c "websocketd --port=8080 ruby inventory.rb"
+    ports:
+      - 8080:8080
+    depends_on: 
+      - app
