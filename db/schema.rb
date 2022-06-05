@@ -11,9 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_06_03_013140) do
-  create_table "inventory_items", force: :cascade do |t|
-    t.integer "store_id", null: false
-    t.integer "shoe_id", null: false
+  create_table "inventory_items", charset: "utf8", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "shoe_id", null: false
     t.integer "available_stock", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -21,13 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_03_013140) do
     t.index ["store_id"], name: "index_inventory_items_on_store_id"
   end
 
-  create_table "shoes", force: :cascade do |t|
+  create_table "shoes", charset: "utf8", force: :cascade do |t|
     t.string "model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "stores", force: :cascade do |t|
+  create_table "stores", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
