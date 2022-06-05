@@ -1,3 +1,8 @@
 inherit_gem:
   rubocop-github:
-    - "config/default.yml"
+    - config/default_edge.yml
+    - config/rails_edge.yml
+
+# Just for the sake of having all the cops enabled. Production-wise, this is not recommended
+AllCops:
+  NewCops: enable
