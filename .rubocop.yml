@@ -4,6 +4,8 @@ inherit_gem:
     - config/rails_edge.yml
 
 AllCops:
+  Exclude:
+    - 'inventory.rb'
   NewCops: disable
   TargetRubyVersion: "2.5"
 
