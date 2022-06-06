@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 require_relative "boot"
 
-require "rails/all"
+require "rails"
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "action_controller/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -24,5 +28,13 @@ module AldosShoes
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Not implementing cors in it's entirety because it isn't needed for this test
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "http://localhost:3000"
+        resource "*", headers: :any, methods: %i[get post options]
+      end
+    end
   end
 end
