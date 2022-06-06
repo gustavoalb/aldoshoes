@@ -14,13 +14,6 @@ class AldosShoesSchema < GraphQL::Schema
     super
   end
 
-  # Union and Interface Resolution
-  def self.resolve_type(abstract_type, obj, ctx)
-    # TODO: Implement this method
-    # to return the correct GraphQL object type for `obj`
-    raise(GraphQL::RequiredImplementationMissingError)
-  end
-
   # Relay-style Object Identification:
 
   # Return a string UUID for `object`
