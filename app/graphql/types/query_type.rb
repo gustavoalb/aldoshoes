@@ -13,8 +13,9 @@ module Types
       argument :model, [String], required: false, description: "Filter shoes by model"
     end
 
-    field :inventory_items, Types::ShoeType.connection_type, null: false, description: "Inventory status" do
-      argument :name, [String], required: false, description: "Filter stores by name"
+    field :inventory_items, Types::InventoryItemType.connection_type, null: false, description: "Inventory status" do
+      argument :store_name, [String], required: false, description: "Filter by store name"
+      argument :shoe_model, [String], required: false, description: "Filter by shoe model"
     end
 
     field :ping, String, null: false, description: "Always returns pong."
@@ -35,8 +36,11 @@ module Types
       Shoe.all
     end
 
-    def inventory_items
-      InventoryItem.all
+    def inventory_items(store_name: nil, shoe_model: nil)
+      inventory_items = InventoryItem.all
+      inventory_items = inventory_items.joins(:store).where(store: { name: store_name }) if store_name
+      inventory_items = inventory_items.joins(:shoe).where(shoe: { model: shoe_model }) if shoe_model
+      inventory_items
     end
   end
 end
