@@ -34,7 +34,7 @@ class UpdateInventory
     @item = begin
       json = JSON.parse(message)
       OpenStruct.new(json)
-    rescue JSON::ParserError => e
+    rescue JSON::ParserError
       Rails.logger.error "Invalid JSON"
       throw :abort
     end
