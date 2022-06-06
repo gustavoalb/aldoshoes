@@ -1,0 +1,30 @@
+# Query to bring all shoe models, with stock alerts
+
+query getInventoryItems {
+  inventoryItems {
+    nodes {
+      availableStock
+      store {
+          name
+      }
+      shoe {
+          model
+      }
+    }
+  }
+}
+
+# Example with filters
+query getInventoryItems {
+  inventoryItems(storeName: "ALDO Burlington Mall", shoeModel: "BUTAUD") {
+    nodes {
+      availableStock
+      store {
+          name
+      }
+      shoe {
+          model
+      }
+    }
+  }
+}

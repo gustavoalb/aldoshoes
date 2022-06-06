@@ -1,0 +1,28 @@
+# Query to get all stores
+
+query getStores {
+  stores {
+    nodes {
+      name
+      stockAlerts {
+        shoe
+        availableStock
+      }
+    }
+  }
+}
+
+# Example with filters
+# Low stock threshold is 10 by default. It defines the minimum stock to appear in the alerts
+query getStores {
+  stores(first: 5, name: "ALDO Pheasant Lane Mall") {
+    nodes {
+      name
+      stockAlerts(threshold: 5) {
+        shoe
+        availableStock
+      }
+    }
+  }
+}
+

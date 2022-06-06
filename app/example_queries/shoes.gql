@@ -1,0 +1,28 @@
+# Query to bring all shoe models, with stock alerts
+
+query getShoes {
+  shoes {
+    nodes {
+      model
+      stockAlerts {
+        store
+        availableStock
+      }
+    }
+  }
+}
+
+# Example with filters
+# Low stock threshold is 10 by default. It defines the minimum stock to appear in the alerts
+query getShoes {
+  shoes(first: 5, model: "BUTAUD") {
+    nodes {
+      model
+      stockAlerts(threshold: 5) {
+        store
+        availableStock
+      }
+    }
+  }
+}
+
