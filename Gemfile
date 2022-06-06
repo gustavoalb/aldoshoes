@@ -25,7 +25,10 @@ gem "faye-websocket"
 # gem "jbuilder"
 
 # Use GraphQL for API
-gem "graphql"
+gem "graphql", "2.0.9"
+
+# CORS
+gem "rack-cors"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
