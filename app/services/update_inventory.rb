@@ -9,7 +9,6 @@ class UpdateInventory
 
   before_call :parse_message, :find_or_create_store, :find_or_create_shoe
 
-
   def initialize(data)
     @message = data
   end
