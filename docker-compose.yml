@@ -50,3 +50,10 @@ services:
       - 8080:8080
     depends_on: 
       - app
+  graphiql:
+    container_name: graphiql
+    image: plutoz/graphiql
+    ports:
+      - 3001:4000
+    environment:
+      API_ENDPOINT: http://localhost:3000/graphql
