@@ -1,6 +1,8 @@
-class Store < ApplicationRecord
-    has_many :inventory_items
-    has_many :shoes, through: :inventory_items
+# frozen_string_literal: true
 
-    validates_uniqueness_of :name
+class Store < ApplicationRecord
+  has_many :inventory_items
+  has_many :shoes, through: :inventory_items
+
+  validates :name, uniqueness: true
 end
