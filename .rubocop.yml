@@ -7,10 +7,12 @@ AllCops:
   Exclude:
     - 'inventory.rb'
   NewCops: disable
-  TargetRubyVersion: "2.5"
 
 Layout/ArgumentAlignment:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/HashSyntax:
   Enabled: false
