@@ -14,7 +14,7 @@ This app uses Ruby 3.1.0 and Rails 7.0.3, and is connected to MySQL 8
 
 # EXAMPLE QUERIES
 
-In the folder example_queries lies files with the most common queries, so it's as simple as copying the query from there and pasting on GraphiQL, and tweaking as you see fit. GraphiQL includes the schema explorer that can be used to customize anything in the queries.
+In the folder example_queries lies files with the most common queries, so it's as simple as copying the query from there and pasting on GraphiQL, and tweaking as you see fit. GraphiQL includes the schema explorer that can be used to customize or explore anything about the queries.
 
 # ASSUMPTIONS
 
