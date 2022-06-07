@@ -33,6 +33,8 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+ActiveJob::Base.queue_adapter = :test
+ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
