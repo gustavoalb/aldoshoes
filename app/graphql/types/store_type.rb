@@ -25,7 +25,7 @@ module Types
 
     def stock_alerts(threshold: 10)
       object.inventory_items.where(available_stock: (..threshold)).map do |item|
-        { shoe: item.shoe.model, available_stock: item.available_stock }
+        { model: item.shoe.model, available_stock: item.available_stock }
       end
     end
   end
