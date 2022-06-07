@@ -19,3 +19,6 @@ Style/HashSyntax:
 
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: false
