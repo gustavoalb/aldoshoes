@@ -17,8 +17,7 @@ class UpdateInventory
     run_callbacks :call do
       @inventory_item = @store.inventory_items.find_or_initialize_by(shoe_id: @shoe.id)
       Rails.logger.info "Updating #{@store.name} inventory - #{@shoe.model} - available stock: #{@item.inventory}"
-      @inventory_item.available_stock = @item.inventory
-      @inventory_item.save
+      @inventory_item.update(available_stock: @item.inventory)
       @errors = @inventory_item.errors.full_messages
 
       return true unless @errors.any?
